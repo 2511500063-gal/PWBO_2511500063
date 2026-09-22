@@ -10,13 +10,13 @@ class App {
         $url = $this->parseURL();
 
         //controller
-        if(file_exists('../app/controllers/' . $url[0] . '.php')) { //cek
+        if(file_exists('../app/controllers/'.$url[0].'.php')) { //cek
             //cek dulu apakah file di dalam folder controllers
             $this->controller = $url[0];
             unset($url[0]); //hapus elemen array ke1
         }
 
-        require_once '../app/controllers/' . $this->controller . '.php';
+        require_once '../app/controllers/'.$this->controller.'.php';
         $this->controller = new $this->controller;
 
         //method
