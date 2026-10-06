@@ -2,16 +2,15 @@
 
 class App {
     protected $controller = 'Home'; //controller default
-    protected $method = 'index'; //method default
+    protected $method = 'index'; //method default 
     protected $params = []; //parameter default
 
     public function __construct()
     {
         $url = $this->parseURL();
-
+       
         //controller
-        if(file_exists('../app/controllers/'.$url[0].'.php')) { //cek
-            //cek dulu apakah file di dalam folder controllers
+        if(file_exists('../app/controllers/'.$url[0].'.php')){ //cek dulu apakah ada file di dalam folder controllers
             $this->controller = $url[0];
             unset($url[0]); //hapus elemen array ke1
         }
@@ -34,14 +33,14 @@ class App {
 
         //jalankan controller & method, serta kirimkan params jika ada
         call_user_func_array([$this->controller, $this->method], $this->params);
+
     }
 
     public function parseURL()
     {
         if(isset($_GET['url'])){
             $url = rtrim($_GET['url'], '/');
-            $url = filter_var($url, FILTER_SANITIZE_URL); //
-            //membersihkan url dari karakter aneh
+            $url = filter_var($url, FILTER_SANITIZE_URL); //membersihkan url dari karakter aneh
             $url = explode('/', $url);
             return $url;
         }
