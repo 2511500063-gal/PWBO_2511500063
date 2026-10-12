@@ -1,6 +1,5 @@
 <?php
 class Database {
-    
     private $host = DB_HOST;
     private $user = DB_USER;
     private $pass = DB_PASS;
@@ -12,13 +11,11 @@ class Database {
     public function __construct()
     {
         //datasource name
-        $dsn = 'mysql:host='.$this->host.';dbname='.$this->dbname;
+        $dsn ='mysql:host='.$this->host.';dbname='.$this->dbname.'';
 
-        $option = [ //untuk optimasi
-            PDO::ATTR_PERSISTENT => true, //untuk membuat database
-            // kita koneksinya terjaga terus
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION //untuk mode
-            // error tampilkan exception
+        $option = [//untuk optimasi
+        PDO::ATTR_PERSISTENT => true, //agar db koneksinya terjaga trs
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION //mode error menampilkan exception
         ];
 
         try {
@@ -65,9 +62,15 @@ class Database {
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-   public function rowCount()
+    public function single()
+    {
+        $this->execute();
+        return $this->stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function rowCount()
     {
         return $this->stmt->rowCount();
     }
-}
 
+}
