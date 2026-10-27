@@ -29,6 +29,11 @@
                 <a class="nav-item nav-link" href="<?php echo BASEURL; ?>/about">
                     About
                 </a>
+
+                <a class="nav-item nav-link" href="<?php echo BASEURL; ?>/latihan">
+                    Latihan</span>
+                </a>
+
             </div>
         </div>
     </div>
